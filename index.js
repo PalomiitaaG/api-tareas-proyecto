@@ -3,6 +3,9 @@ const express = require("express");
 
 const servidor = express();
 
+//Para comprobar si funciona la conexion
+servidor.use("/mentirillas", express.static("./pruebas_api"));
+
 servidor.get("/api-todo", (peticion,respuesta) => {
     respuesta.send("...get");
 });
@@ -15,7 +18,7 @@ servidor.put("/api-todo/actualizar/:id/:operacion", (peticion,respuesta) => {
     respuesta.send("...put");
 });
 
-servidor.delete("/api-todo/borrar:id", (peticion,respuesta) => {
+servidor.delete("/api-todo/borrar/:id", (peticion,respuesta) => {
     respuesta.send("...delete");
 });
 
