@@ -36,6 +36,8 @@ function crearTarea(tarea){
 
             let coleccion = conexion.db("tareas").collection("tareas");
 
+            tarea.terminada = false;
+
             //desestructuramos el insertedId para que nos muestre solo la id.
             let {insertedId} = await coleccion.insertOne(tarea);
 
@@ -45,6 +47,7 @@ function crearTarea(tarea){
             ok({id : insertedId});
 
         }catch(error){
+            console.log(error);
             ko({error : "error en base de datos"});
         }
     });
@@ -70,15 +73,15 @@ function borrarTarea(id){
     });
 }
 
-function actualizarEstado(id){
+function actualizarEstado(id,){
     return new Promise(async (ok,ko) => {
         try{
             const conexion = await conectar();
 
             let coleccion = conexion.db("tareas").collection("tareas");
             
-            //preguntar, primero hay qye poner terminado y luego no terminar
-            let resultado = await coleccion.updateOne({  },{$set : });
+            //preguntar, primero hay qye poner terminado y luego no terminar, primero hacer el finndone y con el valor pongo el not terminado.
+            //let resultado = await coleccion.updateOne({  },{$set : });
 
             conexion.close();
 
@@ -97,7 +100,7 @@ function actualizarTexto(id,tarea){
             let coleccion = conexion.db("tareas").collection("tareas");
             
             //preguntar, primero hay qye poner terminado y luego no terminar
-            let resultado = await coleccion.updateOne({_id : new ObjectId(id)},{ $set : {tarea : (tarea) }});
+            let resultado = await coleccion.updateOne({_id : new ObjectId(id)},{ $set : {tarea : tarea }});
 
             conexion.close();
 
@@ -108,7 +111,8 @@ function actualizarTexto(id,tarea){
     });
 }
 
-actualizarTexto('65f1e7ca1b101672010488ee',"nueva tarea")
-.then(algo => console.log(algo))
+//actualizarTexto('65f1e7ca1b101672010488ee',"nueva tarea")
+//.then(algo => console.log(algo))
 
 
+module.exports = {getTareas,crearTarea,borrarTarea,actualizarEstado,actualizarTexto}

@@ -7,13 +7,9 @@
 </head>
 <body>
     <script>
-        let tarea = "hacer el proyecto";
-        fetch("/api-todo/crear", {
-            method : "POST",
-            body : JSON.stringify({tarea}),
-            headers : {
-                "Content-type" : "application/json"
-            }
+        //let tarea = "ir al patio";
+        fetch("/api-todo/borrar/65f9fa3a05aa13c18bc2c7cd", {
+            method : "DELETE",
         })
         .then(respuesta => respuesta.text())
         .then(respuesta => console.log(respuesta));
