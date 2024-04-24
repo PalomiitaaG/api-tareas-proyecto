@@ -8,12 +8,12 @@
 <body>
     <script>
         //let tarea = "ir al patio";
-        fetch("/api-todo/actualizar/660c322f46de31b598ff6661/2", {
-            method : "PUT",
+        fetch("/api-todo/borrar/660c322f46de31b598ff6661", {
+            method : "DELETE"/*,
             body : JSON.stringify({tarea : "pastel"}),
             headers : {
                 "Content-type" : "application/json"
-            }
+            }*/
         })
         .then(respuesta => respuesta.text())
         .then(respuesta => console.log(respuesta));

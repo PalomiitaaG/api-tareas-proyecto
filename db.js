@@ -30,7 +30,7 @@ function getTareas(){
     });
 }
 
-//creamos una funcion para crear las tarminadas, además de al crearlas coloca el toggle como no terminada
+//creamos una funcion para crear las tareas, además al crearlas coloca el toggle como no terminada
 function crearTarea(tarea){
     return new Promise(async (ok,ko) => {
         try{

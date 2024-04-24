@@ -1,8 +1,9 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const {getTareas,crearTarea,borrarTarea,actualizarEstado,actualizarTexto} = require("./db");
 const {json} = require("body-parser");
-const cors = require("cors");
+
 
 const servidor = express();
 
@@ -40,7 +41,7 @@ servidor.post("/api-todo/crear", async (peticion,respuesta,siguiente) => {
             let id = await crearTarea({tarea});
 
             //responde con el id de la nueva tarea.
-            return respuesta.json({id});
+            return respuesta.json(id);
         }catch(error){
             respuesta.status(500);
             return respuesta.json(error);
